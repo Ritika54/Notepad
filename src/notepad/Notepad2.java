@@ -9,8 +9,11 @@ package notepad;
  *
  * @author Ritika
  */
-public class Notepad2 extends javax.swing.JFrame {
 
+import javax.swing.undo.*;
+
+public class Notepad2 extends javax.swing.JFrame {
+    UndoManager manager = new UndoManager();
     /**
      * Creates new form Notepad2
      */
@@ -29,7 +32,7 @@ public class Notepad2 extends javax.swing.JFrame {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        textarea = new javax.swing.JTextArea();
         jScrollBar1 = new javax.swing.JScrollBar();
         jMenuBar1 = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
@@ -46,6 +49,7 @@ public class Notepad2 extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         undo = new javax.swing.JMenuItem();
         redo = new javax.swing.JMenuItem();
+        selectall = new javax.swing.JMenuItem();
         format = new javax.swing.JMenu();
         wordwrap = new javax.swing.JMenuItem();
         font = new javax.swing.JMenuItem();
@@ -62,9 +66,9 @@ public class Notepad2 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        textarea.setColumns(20);
+        textarea.setRows(5);
+        jScrollPane1.setViewportView(textarea);
 
         jMenuBar1.setBackground(new java.awt.Color(0, 0, 0));
         jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
@@ -95,20 +99,53 @@ public class Notepad2 extends javax.swing.JFrame {
         edit.setText("Edit");
 
         cut.setText("Cut");
+        cut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cutActionPerformed(evt);
+            }
+        });
         edit.add(cut);
 
         copy.setText("copy");
+        copy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                copyActionPerformed(evt);
+            }
+        });
         edit.add(copy);
 
         paste.setText("Paste");
+        paste.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pasteActionPerformed(evt);
+            }
+        });
         edit.add(paste);
         edit.add(jSeparator2);
 
         undo.setText("Undo");
+        undo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                undoActionPerformed(evt);
+            }
+        });
         edit.add(undo);
 
         redo.setText("Redo");
+        redo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                redoActionPerformed(evt);
+            }
+        });
         edit.add(redo);
+
+        selectall.setText("Select All");
+        selectall.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectallActionPerformed(evt);
+            }
+        });
+        edit.add(selectall);
 
         jMenuBar1.add(edit);
 
@@ -175,6 +212,42 @@ public class Notepad2 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutActionPerformed
+        // TODO add your handling code here:
+        textarea.cut();
+    }//GEN-LAST:event_cutActionPerformed
+
+    private void copyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyActionPerformed
+        // TODO add your handling code here:
+        textarea.copy();
+    }//GEN-LAST:event_copyActionPerformed
+
+    private void pasteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasteActionPerformed
+        // TODO add your handling code here:
+        textarea.paste();
+    }//GEN-LAST:event_pasteActionPerformed
+
+    private void selectallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectallActionPerformed
+        // TODO add your handling code here:
+        textarea.selectAll();
+    }//GEN-LAST:event_selectallActionPerformed
+
+    private void undoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoActionPerformed
+        // TODO add your handling code here:
+        try {
+            manager.undo();
+	} catch (CannotUndoException ex) {
+	}
+    }//GEN-LAST:event_undoActionPerformed
+
+    private void redoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redoActionPerformed
+        // TODO add your handling code here:
+        try {
+            manager.redo();
+	} catch (CannotRedoException ex) {
+	}
+    }//GEN-LAST:event_redoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -227,15 +300,16 @@ public class Notepad2 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JMenuItem open;
     private javax.swing.JMenuItem paste;
     private javax.swing.JMenuItem print;
     private javax.swing.JMenuItem redo;
     private javax.swing.JMenuItem save;
     private javax.swing.JMenuItem saveas;
+    private javax.swing.JMenuItem selectall;
     private javax.swing.JMenuItem sendfeedback;
     private javax.swing.JCheckBoxMenuItem statusbar;
+    private javax.swing.JTextArea textarea;
     private javax.swing.JMenuItem undo;
     private javax.swing.JMenu view;
     private javax.swing.JMenuItem viewhelp;
