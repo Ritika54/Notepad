@@ -25,7 +25,7 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="    File     "/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[50, 20]"/>
+              <Dimension value="[55, 20]"/>
             </Property>
           </Properties>
           <SubComponents>
@@ -80,7 +80,7 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="    Edit     "/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[50, 20]"/>
+              <Dimension value="[55, 20]"/>
             </Property>
           </Properties>
           <SubComponents>
@@ -151,6 +151,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Word Wrap"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="wordwrapActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="font">
               <Properties>

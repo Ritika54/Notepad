@@ -14,7 +14,6 @@ import static java.awt.print.Printable.NO_SUCH_PAGE;
 import static java.awt.print.Printable.PAGE_EXISTS;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.RepaintManager;
@@ -76,7 +75,7 @@ public class Notepad2 extends javax.swing.JFrame {
         jMenuBar1.setPreferredSize(new java.awt.Dimension(189, 32));
 
         file.setText("    File     ");
-        file.setPreferredSize(new java.awt.Dimension(50, 20));
+        file.setPreferredSize(new java.awt.Dimension(55, 20));
 
         New.setText("New");
         New.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +123,7 @@ public class Notepad2 extends javax.swing.JFrame {
         jMenuBar1.add(file);
 
         edit.setText("    Edit     ");
-        edit.setPreferredSize(new java.awt.Dimension(50, 20));
+        edit.setPreferredSize(new java.awt.Dimension(55, 20));
 
         cut.setText("Cut");
         cut.addActionListener(new java.awt.event.ActionListener() {
@@ -181,6 +180,11 @@ public class Notepad2 extends javax.swing.JFrame {
         format.setPreferredSize(new java.awt.Dimension(70, 20));
 
         wordwrap.setText("Word Wrap");
+        wordwrap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wordwrapActionPerformed(evt);
+            }
+        });
         format.add(wordwrap);
 
         font.setText("Font...");
@@ -355,6 +359,12 @@ public class Notepad2 extends javax.swing.JFrame {
         launchFontDialog();
     }//GEN-LAST:event_fontActionPerformed
 
+    private void wordwrapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wordwrapActionPerformed
+        // TODO add your handling code here:
+        String str = textarea.getText();
+        textarea.setText(str+"\n");
+    }//GEN-LAST:event_wordwrapActionPerformed
+
   private void launchFontDialog()
   {
     Font m_font;
@@ -362,6 +372,7 @@ public class Notepad2 extends javax.swing.JFrame {
   }
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Notepad2().setVisible(true);
             }
