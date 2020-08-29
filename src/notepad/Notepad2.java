@@ -346,7 +346,7 @@ public class Notepad2 extends javax.swing.JFrame {
     }//GEN-LAST:event_saveActionPerformed
 
     private void saveasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveasActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here   :
         int a = JOptionPane.showConfirmDialog(rootPane, "Do you really want to save this Text Document ?","Save As", WIDTH, HEIGHT);
         if(a==JOptionPane.YES_OPTION){
             String str = JOptionPane.showInputDialog(rootPane, "Enter file name");
